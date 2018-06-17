@@ -1,0 +1,2 @@
+# erxsyslog
+Syslog for EdgemaxRouterX
