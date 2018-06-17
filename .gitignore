@@ -102,3 +102,9 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# Ignore for PyCharm
+.idea
+
+# Ignore for erxsyslog
+logs/

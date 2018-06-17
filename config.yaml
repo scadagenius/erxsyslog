@@ -1,0 +1,12 @@
+syslog: # SYSLOG details
+    ip: 192.168.1.149 # IP address of the device you going to run this application
+    port: 514 # Port number of the above IP address
+    logs: # Various log files and logging level
+      level: info # debug, info(default), warning, error, critical
+      syslog_log: erx_syslog # without extension, log extension will be added automatically
+      monitor_log: erx_app # without extension, log extension will be added automatically
+      device_list: erx_clients # without extension, yaml extension will be added automatically
+
+home-assistant: # Home Assistant access details to send device tracking information
+    url: http://192.168.1.77:8123 # Home Assistant URL/IP, no slash (/) at the end
+    password: home # Home Assistant password
