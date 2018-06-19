@@ -14,7 +14,8 @@ Syslog for EdgeRouterX
 
 **Limitations?**
 
-    1. This version only identifies when a device/client connects to EdgeRouter X. Disconnect is not supported just yet
+    1. This version only identifies when a device/client connects to EdgeRouter X. 
+       Disconnect is not supported just yet
     2. There may be more which are out of scope for this project.
 
 **What are the requirements?**
@@ -50,8 +51,8 @@ Syslog for EdgeRouterX
                         As of now older files will NOT be automatically deleted but in future version it may.
             monitor_log: This is log information of this application such as any error or useful details like device
                         connected.
-            device_list: This yaml file has the details of all the device/client connected to the EdgeRouter X since the
-                        application first ran. Below are the details what is being logged into this file:
+            device_list: This yaml file has the details of all the device/client connected to the EdgeRouter X since 
+                        the application first ran. Below are the details what is being logged into this file:
 
                         11:22:33:44:55:66: # This is MAC address of the device/client reported by the EdgeRouter X
                           IP: 192.168.1.19 # This is IP address of the device/client reported by the EdgeRouter X
@@ -61,8 +62,8 @@ Syslog for EdgeRouterX
                                         proper name. For example you can name it like this:
                                             entity_id: 'my_pixel_phone'
                                         Now when next time device gets (re)connected to EdgeRouter X this application 
-                                        will update Home Assistant so it will show as device_tracker.my_pixel_phone and 
-                                        you can have automation setup do lot more things! 
+                                        will update Home Assistant so it will show as device_tracker.my_pixel_phone 
+                                        and you can have automation setup do lot more things! 
                           last_connected: '2018-06-17 15:47:11' # This is Date/Time when it last got connected
 
     home-assistant section has the details of your running Home Assistant to send the device tracking information.
@@ -73,3 +74,22 @@ Syslog for EdgeRouterX
 
     This project includes two docker files: dockerfile to build the image and docker-compose.yaml for compose. 
     In future version I may have docker-image which can directly be deployed from docker hub!
+
+**How to use it?**
+
+    In few simple steps you can get it working.
+    1. Clone the repository (Basically get all the files to your computer from github)
+    2. Modify the config.yaml file as mentioned above in the Config section
+    3. Modify configuration of EdgeRouter X to send syslog information to this application as mentioned above in 
+       the requirements section #3
+    4. There are 2 different ways to run it.
+        a. Run using python command from the folder you have all files
+            python3 erx_main.py .
+        b. Use docker-compose command
+            Modify two lines in the file docker-compose.yaml to point your current folder like shown below
+              Line #6 to 
+                context: . # Folder name where you have cloned files
+              Line #12 to 
+                - .:/config # Folder name where you have config file
+            And then run the command (you may have to run with sudo) 
+              docker docker-compose up -d
